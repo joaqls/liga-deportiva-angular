@@ -1,2 +1,7 @@
-<h2>Zona de árbitro</h2>
-<p>Gestión de partidos</p>
+<h2>Partidos asignados</h2>
+
+<ul>
+  <li *ngFor="let p of partidos">
+    {{ p.equipoLocal }} vs {{ p.equipoVisitante }} – {{ p.fecha | date }}
+  </li>
+</ul>

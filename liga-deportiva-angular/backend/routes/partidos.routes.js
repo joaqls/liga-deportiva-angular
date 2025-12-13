@@ -23,4 +23,29 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Partidos por árbitro
+router.get('/arbitro/:arbitro', async (req, res) => {
+  try {
+    const partidos = await Partido.find({ arbitro: req.params.arbitro });
+    res.json(partidos);
+  } catch (error) {
+    res.status(500).json({ message: 'Error al obtener partidos del árbitro' });
+  }
+});
+
+// Partidos por equipo
+router.get('/equipo/:equipo', async (req, res) => {
+  try {
+    const partidos = await Partido.find({
+      $or: [
+        { equipoLocal: req.params.equipo },
+        { equipoVisitante: req.params.equipo }
+      ]
+    });
+    res.json(partidos);
+  } catch (error) {
+    res.status(500).json({ message: 'Error al obtener partidos del equipo' });
+  }
+});
+
 module.exports = router;

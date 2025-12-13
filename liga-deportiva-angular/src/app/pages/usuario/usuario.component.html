@@ -1,2 +1,7 @@
-<h2>Zona de usuario</h2>
-<p>Bienvenido, usuario</p>
+<h2>Partidos de tu equipo</h2>
+
+<ul>
+  <li *ngFor="let p of partidos">
+    {{ p.equipoLocal }} vs {{ p.equipoVisitante }} – {{ p.fecha | date }}
+  </li>
+</ul>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,29 +9,28 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  constructor(private router: Router) {}
+  usuario = '';
+  password = '';
 
-  login(rol: string) {
-    if (!rol) {
-      alert('Selecciona un tipo de usuario');
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
+
+  login() {
+    if (!this.usuario || !this.password) {
+      alert('Introduce usuario y contraseña');
       return;
     }
 
-    localStorage.setItem('rol', rol);
-
-    switch (rol) {
-      case 'admin':
-        this.router.navigate(['/admin']);
-        break;
-      case 'usuario':
-        this.router.navigate(['/usuario']);
-        break;
-      case 'capitan':
-        this.router.navigate(['/capitan']);
-        break;
-      case 'arbitro':
-        this.router.navigate(['/arbitro']);
-        break;
-    }
+    this.authService.login(this.usuario, this.password).subscribe({
+      next: (res: { rol: string; token: string }) => {
+        this.authService.setSesion(res.rol, res.token);
+        this.router.navigate([`/${res.rol}`]);
+      },
+      error: () => {
+        alert('Usuario o contraseña incorrectos');
+      }
+    });
   }
 }
