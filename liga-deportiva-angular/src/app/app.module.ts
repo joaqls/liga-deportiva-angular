@@ -13,6 +13,7 @@ import { ArbitrosComponent } from './pages/arbitros/arbitros.component';
 import { ResultadosComponent } from './pages/resultados/resultados.component';
 import { ContactoComponent } from './pages/contacto/contacto.component';
 import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { LoginComponent } from './pages/login/login.component';
     ArbitrosComponent,
     ResultadosComponent,
     ContactoComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
