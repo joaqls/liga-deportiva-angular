@@ -1,1 +1,58 @@
-<p>contacto works!</p>
+<main class="container my-5">
+
+  <!-- ================== FAQ ================== -->
+  <section id="faq" class="mb-5">
+    <h2 class="text-center mb-4">Preguntas Frecuentes</h2>
+
+    <div class="mb-3">
+      <button class="btn btn-outline-primary w-100 text-start" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+        ¿Cómo me inscribo en una competición?
+      </button>
+      <div class="collapse" id="faq1">
+        <div class="card card-body">
+          Puedes inscribirte a través del formulario de contacto o en la secretaría del instituto.
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <button class="btn btn-outline-primary w-100 text-start" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+        ¿Cuántos jugadores puede tener un equipo?
+      </button>
+      <div class="collapse" id="faq2">
+        <div class="card card-body">
+          Depende del deporte, pero normalmente entre 6 y 12 jugadores.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================== FORMULARIO DE CONTACTO ================== -->
+  <section id="formulario">
+    <h2 class="text-center mb-4">Formulario de Contacto</h2>
+
+    <form id="formContacto" class="mx-auto" style="max-width:600px;">
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="nombre" required>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Correo electrónico</label>
+        <input type="email" class="form-control" id="email" required>
+      </div>
+      <div class="mb-3">
+        <label for="mensaje" class="form-label">Mensaje</label>
+        <textarea class="form-control" id="mensaje" rows="4" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-success w-100" id="btnToast">Enviar</button>
+    </form>
+  </section>
+
+  <!-- ================== BOTÓN DE INSCRIPCIÓN (MODAL) ================== -->
+  <div class="text-center my-4">
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalInscripcion">
+      Inscribirse
+    </button>
+  </div>
+
+</main>

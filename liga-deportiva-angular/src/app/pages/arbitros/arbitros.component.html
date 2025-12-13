@@ -1,1 +1,53 @@
-<p>arbitros works!</p>
+<main>
+  <!-- ================= SECCIÓN: Árbitros ================= -->
+  <section id="arbitros" class="container my-5">
+    <h2 class="text-center mb-4">Árbitros</h2>
+
+    <!-- Buscador -->
+    <div class="mb-3 text-center">
+      <input type="text" id="buscadorArbitros" class="form-control w-auto d-inline-block" placeholder="Buscar árbitro...">
+    </div>
+
+    <!-- Tabla de árbitros -->
+    <div class="table-responsive">
+      <table class="table table-striped text-center align-middle" id="tablaArbitros">
+        <thead class="table-dark">
+          <tr>
+            <th>Nombre</th>
+            <th>Experiencia</th>
+            <th>Deporte</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-nombre="Luis Fernández" data-experiencia="10 años" data-partidos="120" data-deporte="Fútbol">
+            <td>Luis Fernández</td><td>10 años</td><td>Fútbol</td>
+          </tr>
+          <tr data-nombre="Marta Sánchez" data-experiencia="8 años" data-partidos="85" data-deporte="Baloncesto">
+            <td>Marta Sánchez</td><td>8 años</td><td>Baloncesto</td>
+          </tr>
+          <tr data-nombre="Carlos Jiménez" data-experiencia="6 años" data-partidos="60" data-deporte="Voleibol">
+            <td>Carlos Jiménez</td><td>6 años</td><td>Voleibol</td>
+          </tr>
+          <tr data-nombre="Ana Ruiz" data-experiencia="4 años" data-partidos="40" data-deporte="Tenis">
+            <td>Ana Ruiz</td><td>4 años</td><td>Tenis</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ================= MODAL ================= -->
+  <div class="modal fade" id="arbitroModal" tabindex="-1" aria-labelledby="arbitroModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="arbitroModalLabel">Información del Árbitro</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body" id="contenidoArbitro">
+          <!-- Contenido dinámico vía JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,1 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
+/* Efecto hover en botones */
+.btn:hover {
+  transform: scale(1.05); /* Aumenta ligeramente el tamaño */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Agrega sombra */
+  transition: 0.3s; /* Transición suave */
+}
+
