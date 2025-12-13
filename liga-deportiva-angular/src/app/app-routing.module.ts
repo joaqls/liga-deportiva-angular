@@ -10,13 +10,16 @@ import { ResultadosComponent } from './pages/resultados/resultados.component';
 import { ContactoComponent } from './pages/contacto/contacto.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+
 import { AdminComponent } from './pages/admin/admin.component';
 import { UsuarioComponent } from './pages/usuario/usuario.component';
 import { CapitanComponent } from './pages/capitan/capitan.component';
 import { ArbitroComponent } from './pages/arbitro/arbitro.component';
 
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
+  // Rutas públicas
   { path: '', component: HomeComponent },
   { path: 'equipos', component: EquiposComponent },
   { path: 'jugadores', component: JugadoresComponent },
@@ -26,10 +29,32 @@ const routes: Routes = [
   { path: 'contacto', component: ContactoComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'admin', component: AdminComponent },
-  { path: 'usuario', component: UsuarioComponent },
-  { path: 'capitan', component: CapitanComponent },
-  {path: 'arbitro', component: ArbitroComponent },
+
+  // Rutas privadas protegidas por rol
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [AuthGuard],
+    data: { rol: 'admin' }
+  },
+  {
+    path: 'usuario',
+    component: UsuarioComponent,
+    canActivate: [AuthGuard],
+    data: { rol: 'usuario' }
+  },
+  {
+    path: 'capitan',
+    component: CapitanComponent,
+    canActivate: [AuthGuard],
+    data: { rol: 'capitan' }
+  },
+  {
+    path: 'arbitro',
+    component: ArbitroComponent,
+    canActivate: [AuthGuard],
+    data: { rol: 'arbitro' }
+  },
 
   { path: '**', redirectTo: '' }
 ];

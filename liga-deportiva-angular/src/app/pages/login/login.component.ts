@@ -16,6 +16,8 @@ export class LoginComponent {
       return;
     }
 
+    localStorage.setItem('rol', rol);
+
     switch (rol) {
       case 'admin':
         this.router.navigate(['/admin']);
