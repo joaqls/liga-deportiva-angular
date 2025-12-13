@@ -12,6 +12,7 @@ import { ClasificacionesComponent } from './pages/clasificaciones/clasificacione
 import { ArbitrosComponent } from './pages/arbitros/arbitros.component';
 import { ResultadosComponent } from './pages/resultados/resultados.component';
 import { ContactoComponent } from './pages/contacto/contacto.component';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ContactoComponent } from './pages/contacto/contacto.component';
     ClasificacionesComponent,
     ArbitrosComponent,
     ResultadosComponent,
-    ContactoComponent
+    ContactoComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

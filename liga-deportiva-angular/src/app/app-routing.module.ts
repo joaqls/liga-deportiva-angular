@@ -8,6 +8,8 @@ import { ClasificacionesComponent } from './pages/clasificaciones/clasificacione
 import { ArbitrosComponent } from './pages/arbitros/arbitros.component';
 import { ResultadosComponent } from './pages/resultados/resultados.component';
 import { ContactoComponent } from './pages/contacto/contacto.component';
+import { LoginComponent } from './pages/login/login.component';
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -17,6 +19,7 @@ const routes: Routes = [
   { path: 'arbitros', component: ArbitrosComponent },
   { path: 'resultados', component: ResultadosComponent },
   { path: 'contacto', component: ContactoComponent },
+  { path: 'login', component: LoginComponent },
   { path: '**', redirectTo: '' }
 ];
 
