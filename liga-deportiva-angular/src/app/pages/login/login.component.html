@@ -18,16 +18,26 @@
             <input type="password" id="password" class="form-control" placeholder="Introduce tu contraseña">
           </div>
 
+        <div class="mb-3">
+            <label for="rol" class="form-label">Tipo de usuario</label>
+            <select id="rol" class="form-select" #rolSelect>
+                <option value="">Selecciona un rol</option>
+                <option value="admin">Administrador</option>
+                <option value="usuario">Usuario</option>
+                <option value="capitan">Capitán</option>
+                <option value="arbitro">Árbitro</option>
+            </select>
+        </div>
+
+
           <div class="d-grid">
-            <button type="submit" class="btn btn-primary">
-              Entrar
+            <button type="button" class="btn btn-primary" (click)="login(rolSelect.value)">
+            Entrar
             </button>
+
           </div>
-
         </form>
-
       </div>
     </div>
-
   </div>
 </div>

@@ -14,6 +14,10 @@ import { ResultadosComponent } from './pages/resultados/resultados.component';
 import { ContactoComponent } from './pages/contacto/contacto.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { AdminComponent } from './pages/admin/admin.component';
+import { UsuarioComponent } from './pages/usuario/usuario.component';
+import { CapitanComponent } from './pages/capitan/capitan.component';
+import { ArbitroComponent } from './pages/arbitro/arbitro.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +32,11 @@ import { RegisterComponent } from './pages/register/register.component';
     ResultadosComponent,
     ContactoComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AdminComponent,
+    UsuarioComponent,
+    CapitanComponent,
+    ArbitroComponent
   ],
   imports: [
     BrowserModule,
