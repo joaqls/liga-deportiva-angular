@@ -1,40 +1,40 @@
-import { Component } from '@angular/core';
+<section class="container my-5">
+  <h2 class="text-center mb-4">Jugadores</h2>
 
-@Component({
-  selector: 'app-jugadores',
-  templateUrl: './jugadores.component.html',
-  styleUrls: ['./jugadores.component.css']
-})
-export class JugadoresComponent {
+  <!-- Buscador -->
+  <div class="mb-4 text-center">
+    <input
+      type="text"
+      class="form-control w-50 d-inline-block"
+      placeholder="Buscar por nombre, equipo o deporte"
+      [(ngModel)]="filtro"
+    >
+  </div>
 
-  // Texto del buscador
-  busqueda: string = '';
+  <!-- Tabla -->
+  <div class="table-responsive">
+    <table class="table table-striped table-hover text-center align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>Nombre</th>
+          <th>Equipo</th>
+          <th>Deporte</th>
+        </tr>
+      </thead>
 
-  // Datos simulados de jugadores
-  jugadores = [
-    // Fútbol
-    { nombre: 'Juan Pérez', equipo: 'Fútbol A', deporte: 'Fútbol' },
-    { nombre: 'Luis Gómez', equipo: 'Fútbol B', deporte: 'Fútbol' },
+      <tbody>
+        <tr *ngFor="let j of jugadoresFiltrados">
+          <td>{{ j.nombre }}</td>
+          <td>{{ j.equipo }}</td>
+          <td>{{ j.deporte }}</td>
+        </tr>
 
-    // Baloncesto
-    { nombre: 'Ana López', equipo: 'Baloncesto A', deporte: 'Baloncesto' },
-    { nombre: 'Pedro Martínez', equipo: 'Baloncesto B', deporte: 'Baloncesto' },
-
-    // Voleibol
-    { nombre: 'Carlos Ruiz', equipo: 'Voleibol A', deporte: 'Voleibol' },
-
-    // Tenis
-    { nombre: 'Marta Díaz', equipo: 'Tenis A', deporte: 'Tenis' }
-  ];
-
-  // Jugadores filtrados por búsqueda
-  jugadoresFiltrados() {
-    const texto = this.busqueda.toLowerCase();
-
-    return this.jugadores.filter(j =>
-      j.nombre.toLowerCase().includes(texto) ||
-      j.equipo.toLowerCase().includes(texto) ||
-      j.deporte.toLowerCase().includes(texto)
-    );
-  }
-}
+        <tr *ngIf="jugadoresFiltrados.length === 0">
+          <td colspan="3">
+            <em>No se encontraron jugadores</em>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
