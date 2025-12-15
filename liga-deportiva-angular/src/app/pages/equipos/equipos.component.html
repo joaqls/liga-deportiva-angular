@@ -1,254 +1,27 @@
- <main>
-    <!-- ================= SECCIÓN: Equipos con filtro ================= -->
-    <section id="equipos" class="container my-5">
-      <h2 class="text-center mb-4">Equipos</h2>
+<section class="container my-5">
+  <h2 class="text-center mb-4">Equipos</h2>
 
-      <!-- Selector de filtro -->
-      <div class="mb-4 text-center">
-        <select id="filtroDeporte" class="form-select w-auto d-inline-block">
-          <option value="todos">Todos</option>
-          <option value="futbol">Fútbol</option>
-          <option value="baloncesto">Baloncesto</option>
-          <option value="voleibol">Voleibol</option>
-          <option value="tenis">Tenis</option>
-        </select>
-      </div>
+  <div class="mb-4 text-center">
+    <select class="form-select w-auto d-inline-block"
+            [(ngModel)]="filtroDeporte">
+      <option value="todos">Todos</option>
+      <option value="futbol">Fútbol</option>
+      <option value="baloncesto">Baloncesto</option>
+      <option value="voleibol">Voleibol</option>
+      <option value="tenis">Tenis</option>
+    </select>
+  </div>
 
-      <!-- Lista de equipos -->
-<div class="row g-4" id="listaEquipos">
-
-    <!-- Fútbol -->
-    <div class="col-12 col-md-6 col-lg-3 equipo" data-deporte="futbol">
+  <div class="row g-4">
+    <div class="col-12 col-md-6 col-lg-3"
+         *ngFor="let e of equiposFiltrados">
       <div class="card h-100">
-        <img src="assets/img/futbol.jpg.avif" class="card-img-top" alt="Fútbol A">
+        <img [src]="e.imagen" class="card-img-top" [alt]="e.nombre">
         <div class="card-body text-center">
-          <h5 class="card-title">Fútbol A</h5>
-          <p class="card-text">Equipo masculino de fútbol.</p>
-          <button class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#modalFutbolA">Ver equipo</button>
+          <h5 class="card-title">{{ e.nombre }}</h5>
+          <p class="card-text">{{ e.descripcion }}</p>
         </div>
       </div>
     </div>
-
-    <div class="col-12 col-md-6 col-lg-3 equipo" data-deporte="futbol">
-      <div class="card h-100">
-        <img src="assets/img/futbol.jpg.avif" class="card-img-top" alt="Fútbol B">
-        <div class="card-body text-center">
-          <h5 class="card-title">Fútbol B</h5>
-          <p class="card-text">Equipo femenino de fútbol.</p>
-          <button class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#modalFutbolB">Ver equipo</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Baloncesto -->
-    <div class="col-12 col-md-6 col-lg-3 equipo" data-deporte="baloncesto">
-      <div class="card h-100">
-        <img src="assets/img/baloncesto.jpeg" class="card-img-top" alt="Baloncesto A">
-        <div class="card-body text-center">
-          <h5 class="card-title">Baloncesto A</h5>
-          <p class="card-text">Equipo mixto de baloncesto.</p>
-          <button class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#modalBaloncestoA">Ver equipo</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-12 col-md-6 col-lg-3 equipo" data-deporte="baloncesto">
-      <div class="card h-100">
-        <img src="assets/img/baloncesto.jpeg" class="card-img-top" alt="Baloncesto B">
-        <div class="card-body text-center">
-          <h5 class="card-title">Baloncesto B</h5>
-          <p class="card-text">Equipo masculino de baloncesto.</p>
-          <button class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#modalBaloncestoB">Ver equipo</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Voleibol -->
-    <div class="col-12 col-md-6 col-lg-3 equipo" data-deporte="voleibol">
-      <div class="card h-100">
-        <img src="assets/img/voleibol.jpg.avif" class="card-img-top" alt="Voleibol A">
-        <div class="card-body text-center">
-          <h5 class="card-title">Voleibol A</h5>
-          <p class="card-text">Equipo mixto de voleibol.</p>
-          <button class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#modalVoleibolA">Ver equipo</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-12 col-md-6 col-lg-3 equipo" data-deporte="voleibol">
-      <div class="card h-100">
-        <img src="assets/img/voleibol.jpg.avif" class="card-img-top" alt="Voleibol B">
-        <div class="card-body text-center">
-          <h5 class="card-title">Voleibol B</h5>
-          <p class="card-text">Equipo femenino de voleibol.</p>
-          <button class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#modalVoleibolB">Ver equipo</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Tenis -->
-    <div class="col-12 col-md-6 col-lg-3 equipo" data-deporte="tenis">
-      <div class="card h-100">
-        <img src="assets/img/tenis.jpg.avif" class="card-img-top" alt="Tenis A">
-        <div class="card-body text-center">
-          <h5 class="card-title">Tenis A</h5>
-          <p class="card-text">Torneo individual de tenis.</p>
-          <button class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#modalTenisA">Ver equipo</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-12 col-md-6 col-lg-3 equipo" data-deporte="tenis">
-      <div class="card h-100">
-        <img src="assets/img/tenis.jpg.avif" class="card-img-top" alt="Tenis B">
-        <div class="card-body text-center">
-          <h5 class="card-title">Tenis B</h5>
-          <p class="card-text">Torneo por parejas de tenis.</p>
-          <button class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#modalTenisB">Ver equipo</button>
-        </div>
-      </div>
-    </div>
-
-</div>
-
-    </section>
-
-    <!-- ================= MODALES DE EQUIPOS ================= -->
-
-    <!-- Ejemplo Modal Fútbol A -->
-    <div class="modal fade" id="modalFutbolA" tabindex="-1" aria-labelledby="modalFutbolALabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalFutbolALabel">Fútbol A</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-          </div>
-          <div class="modal-body">
-            <p><strong>Capitán:</strong> Juan Pérez</p>
-            <p><strong>Jugadores:</strong> Pedro, Luis, Andrés, Carlos, Mateo</p>
-            <p><strong>Posiciones:</strong> Portero, Defensa, Centrocampista, Delantero</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal Fútbol B -->
-    <div class="modal fade" id="modalFutbolB" tabindex="-1" aria-labelledby="modalFutbolBLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalFutbolBLabel">Fútbol B</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-          </div>
-          <div class="modal-body">
-            <p><strong>Capitán:</strong> Laura Martínez</p>
-            <p><strong>Jugadores:</strong> Ana, Clara, Elena, Marta, Sofia</p>
-            <p><strong>Posiciones:</strong> Portera, Defensa, Centrocampista, Delantera</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal Baloncesto A -->
-    <div class="modal fade" id="modalBaloncestoA" tabindex="-1" aria-labelledby="modalBaloncestoALabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalBaloncestoALabel">Baloncesto A</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-          </div>
-          <div class="modal-body">
-            <p><strong>Capitán:</strong> Ana Gómez</p>
-            <p><strong>Jugadores:</strong> Laura, Miguel, Sofía, Javier, Diego</p>
-            <p><strong>Posiciones:</strong> Base, Escolta, Alero, Ala-Pívot, Pívot</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal Baloncesto B -->
-    <div class="modal fade" id="modalBaloncestoB" tabindex="-1" aria-labelledby="modalBaloncestoBLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalBaloncestoBLabel">Baloncesto B</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-          </div>
-          <div class="modal-body">
-            <p><strong>Capitán:</strong> Miguel Torres</p>
-            <p><strong>Jugadores:</strong> Pedro, Juan, Andrés, Luis, Mateo</p>
-            <p><strong>Posiciones:</strong> Base, Escolta, Alero, Ala-Pívot, Pívot</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal Voleibol A -->
-    <div class="modal fade" id="modalVoleibolA" tabindex="-1" aria-labelledby="modalVoleibolALabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalVoleibolALabel">Voleibol A</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-          </div>
-          <div class="modal-body">
-            <p><strong>Capitán:</strong> María López</p>
-            <p><strong>Jugadores:</strong> Elena, Pablo, Carla, Sergio, Iván</p>
-            <p><strong>Posiciones:</strong> Líbero, Opuesto, Central, Colocador, Receptor</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal Voleibol B -->
-    <div class="modal fade" id="modalVoleibolB" tabindex="-1" aria-labelledby="modalVoleibolBLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalVoleibolBLabel">Voleibol B</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-          </div>
-          <div class="modal-body">
-            <p><strong>Capitán:</strong> Carlos García</p>
-            <p><strong>Jugadores:</strong> Laura, Sofía, Diego, Javier, Ana</p>
-            <p><strong>Posiciones:</strong> Líbero, Opuesto, Central, Colocador, Receptor</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal Tenis A -->
-    <div class="modal fade" id="modalTenisA" tabindex="-1" aria-labelledby="modalTenisALabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalTenisALabel">Tenis A</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-          </div>
-          <div class="modal-body">
-            <p><strong>Capitán:</strong> Laura Fernández</p>
-            <p><strong>Jugadores:</strong> Laura, Pedro, Sofía</p>
-            <p><strong>Modalidad:</strong> Individual</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal Tenis B -->
-    <div class="modal fade" id="modalTenisB" tabindex="-1" aria-labelledby="modalTenisBLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalTenisBLabel">Tenis B</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-          </div>
-          <div class="modal-body">
-            <p><strong>Capitán:</strong> Diego Martínez</p>
-            <p><strong>Jugadores:</strong> Diego, Juan, Carlos</p>
-            <p><strong>Modalidad:</strong> Parejas</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </main>
+  </div>
+</section>

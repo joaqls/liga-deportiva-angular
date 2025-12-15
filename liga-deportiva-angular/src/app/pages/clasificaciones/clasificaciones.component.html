@@ -1,55 +1,42 @@
-<!-- ================= CONTENIDO PRINCIPAL ================= -->
-<main>
-  <!-- ================= SECCIÓN: Clasificaciones ================= -->
-  <section id="clasificaciones" class="container my-5">
-    <h2 class="text-center mb-4">Clasificaciones</h2>
+<section class="container my-5">
+  <h2 class="text-center mb-4">Clasificaciones</h2>
 
-    <!-- Selector de filtro -->
-    <div class="mb-4 text-center">
-      <select id="filtroClasificacion" class="form-select w-auto d-inline-block">
-        <option value="todos">Todos los deportes</option>
-        <option value="futbol">Fútbol</option>
-        <option value="baloncesto">Baloncesto</option>
-        <option value="voleibol">Voleibol</option>
-        <option value="tenis">Tenis</option>
-      </select>
-    </div>
+  <div class="mb-4 text-center">
+    <select class="form-select w-auto d-inline-block"
+            [(ngModel)]="filtroDeporte">
+      <option value="todos">Todos</option>
+      <option value="futbol">Fútbol</option>
+      <option value="baloncesto">Baloncesto</option>
+      <option value="voleibol">Voleibol</option>
+      <option value="tenis">Tenis</option>
+    </select>
+  </div>
 
-    <div class="table-responsive">
-      <table class="table table-striped table-hover text-center align-middle">
-        <thead class="table-dark">
-          <tr>
-            <th>Deporte</th>
-            <th>Equipo</th>
-            <th>PJ</th>
-            <th>G</th>
-            <th>E</th>
-            <th>P</th>
-            <th>PTS</th>
-          </tr>
-        </thead>
-        <tbody id="tablaClasificaciones">
-          <!-- Fútbol -->
-          <tr data-deporte="futbol"><td>Fútbol</td><td>Fútbol A</td><td>3</td><td>2</td><td>1</td><td>0</td><td>7</td></tr>
-          <tr data-deporte="futbol"><td>Fútbol</td><td>Fútbol B</td><td>3</td><td>0</td><td>2</td><td>1</td><td>2</td></tr>
-          <tr data-deporte="futbol"><td>Fútbol</td><td>Fútbol C</td><td>2</td><td>0</td><td>1</td><td>1</td><td>1</td></tr>
+  <div class="table-responsive">
+    <table class="table table-striped table-hover text-center">
+      <thead class="table-dark">
+        <tr>
+          <th>Deporte</th>
+          <th>Equipo</th>
+          <th>PJ</th>
+          <th>G</th>
+          <th>E</th>
+          <th>P</th>
+          <th>PTS</th>
+        </tr>
+      </thead>
 
-          <!-- Baloncesto -->
-          <tr data-deporte="baloncesto"><td>Baloncesto</td><td>Baloncesto A</td><td>2</td><td>1</td><td>0</td><td>1</td><td>2</td></tr>
-          <tr data-deporte="baloncesto"><td>Baloncesto</td><td>Baloncesto B</td><td>2</td><td>1</td><td>0</td><td>1</td><td>2</td></tr>
-          <tr data-deporte="baloncesto"><td>Baloncesto</td><td>Baloncesto C</td><td>2</td><td>1</td><td>0</td><td>1</td><td>2</td></tr>
-
-          <!-- Voleibol -->
-          <tr data-deporte="voleibol"><td>Voleibol</td><td>Voleibol A</td><td>2</td><td>2</td><td>0</td><td>0</td><td>4</td></tr>
-          <tr data-deporte="voleibol"><td>Voleibol</td><td>Voleibol B</td><td>2</td><td>0</td><td>0</td><td>2</td><td>0</td></tr>
-          <tr data-deporte="voleibol"><td>Voleibol C</td><td>Voleibol C</td><td>2</td><td>0</td><td>0</td><td>2</td><td>0</td></tr>
-
-          <!-- Tenis -->
-          <tr data-deporte="tenis"><td>Tenis</td><td>Tenis A</td><td>2</td><td>2</td><td>0</td><td>0</td><td>4</td></tr>
-          <tr data-deporte="tenis"><td>Tenis B</td><td>Tenis B</td><td>2</td><td>0</td><td>0</td><td>2</td><td>0</td></tr>
-          <tr data-deporte="tenis"><td>Tenis C</td><td>Tenis C</td><td>2</td><td>0</td><td>0</td><td>2</td><td>0</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-</main>
+      <tbody>
+        <tr *ngFor="let c of clasificacionesFiltradas">
+          <td>{{ c.deporte | titlecase }}</td>
+          <td>{{ c.equipo }}</td>
+          <td>{{ c.pj }}</td>
+          <td>{{ c.g }}</td>
+          <td>{{ c.e }}</td>
+          <td>{{ c.p }}</td>
+          <td>{{ c.pts }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
