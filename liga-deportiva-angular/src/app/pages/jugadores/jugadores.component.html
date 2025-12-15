@@ -1,66 +1,40 @@
+import { Component } from '@angular/core';
 
-  <!-- ================= SECCIÓN: Jugadores ================= -->
-  <section id="jugadores" class="container my-5">
-    <h2 class="text-center mb-4">Jugadores</h2>
+@Component({
+  selector: 'app-jugadores',
+  templateUrl: './jugadores.component.html',
+  styleUrls: ['./jugadores.component.css']
+})
+export class JugadoresComponent {
 
-    <!-- Buscador -->
-    <div class="mb-3 text-center">
-      <input type="text" id="buscador" class="form-control w-auto d-inline-block"
-             placeholder="Buscar jugador...">
-    </div>
+  // Texto del buscador
+  busqueda: string = '';
 
-    <!-- Tabla de jugadores -->
-    <div class="table-responsive">
-      <table class="table table-striped text-center align-middle" id="tablaJugadores">
-        <thead class="table-dark">
-          <tr>
-            <th>Nombre</th>
-            <th>Equipo</th>
-            <th>Deporte</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Fútbol -->
-          <tr data-nombre="Juan Pérez" data-equipo="Fútbol A" data-deporte="Fútbol" data-posicion="Delantero" data-edad="20" data-goles="5">
-            <td>Juan Pérez</td><td>Fútbol A</td><td>Fútbol</td>
-          </tr>
-          <tr data-nombre="Luis Gómez" data-equipo="Fútbol B" data-deporte="Fútbol" data-posicion="Portero" data-edad="21" data-goles="0">
-            <td>Luis Gómez</td><td>Fútbol B</td><td>Fútbol</td>
-          </tr>
+  // Datos simulados de jugadores
+  jugadores = [
+    // Fútbol
+    { nombre: 'Juan Pérez', equipo: 'Fútbol A', deporte: 'Fútbol' },
+    { nombre: 'Luis Gómez', equipo: 'Fútbol B', deporte: 'Fútbol' },
 
-          <!-- Baloncesto -->
-          <tr data-nombre="Ana López" data-equipo="Baloncesto A" data-deporte="Baloncesto" data-posicion="Base" data-edad="22" data-puntos="50">
-            <td>Ana López</td><td>Baloncesto A</td><td>Baloncesto</td>
-          </tr>
-          <tr data-nombre="Pedro Martínez" data-equipo="Baloncesto B" data-deporte="Baloncesto" data-posicion="Alero" data-edad="23" data-puntos="40">
-            <td>Pedro Martínez</td><td>Baloncesto B</td><td>Baloncesto</td>
-          </tr>
+    // Baloncesto
+    { nombre: 'Ana López', equipo: 'Baloncesto A', deporte: 'Baloncesto' },
+    { nombre: 'Pedro Martínez', equipo: 'Baloncesto B', deporte: 'Baloncesto' },
 
-          <!-- Voleibol -->
-          <tr data-nombre="Carlos Ruiz" data-equipo="Voleibol A" data-deporte="Voleibol" data-posicion="Central" data-edad="19" data-puntos="30">
-            <td>Carlos Ruiz</td><td>Voleibol A</td><td>Voleibol</td>
-          </tr>
+    // Voleibol
+    { nombre: 'Carlos Ruiz', equipo: 'Voleibol A', deporte: 'Voleibol' },
 
-          <!-- Tenis -->
-          <tr data-nombre="Marta Díaz" data-equipo="Tenis A" data-deporte="Tenis" data-posicion="Individual" data-edad="18" data-victorias="3">
-            <td>Marta Díaz</td><td>Tenis A</td><td>Tenis</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
+    // Tenis
+    { nombre: 'Marta Díaz', equipo: 'Tenis A', deporte: 'Tenis' }
+  ];
 
-  <!-- ================= MODAL ================= -->
-  <div class="modal fade" id="jugadorModal" tabindex="-1" aria-labelledby="jugadorModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="jugadorModalLabel">Información del Jugador</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-        </div>
-        <div class="modal-body" id="contenidoJugador">
-          <!-- Contenido dinámico vía JS -->
-        </div>
-      </div>
-    </div>
-  </div>
+  // Jugadores filtrados por búsqueda
+  jugadoresFiltrados() {
+    const texto = this.busqueda.toLowerCase();
+
+    return this.jugadores.filter(j =>
+      j.nombre.toLowerCase().includes(texto) ||
+      j.equipo.toLowerCase().includes(texto) ||
+      j.deporte.toLowerCase().includes(texto)
+    );
+  }
+}
