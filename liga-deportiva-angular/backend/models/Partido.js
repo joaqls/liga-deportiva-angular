@@ -25,6 +25,8 @@ const PartidoSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+
+  // Resultado final confirmado
   resultadoLocal: {
     type: Number,
     default: null
@@ -33,11 +35,23 @@ const PartidoSchema = new mongoose.Schema({
     type: Number,
     default: null
   },
+
+  // Resultados introducidos por los capitanes
+  resultadoCapitanLocal: {
+    type: String,
+    default: null
+  },
+  resultadoCapitanVisitante: {
+    type: String,
+    default: null
+  },
+
   estado: {
     type: String,
     enum: ['pendiente', 'confirmado', 'revision_admin'],
     default: 'pendiente'
   }
+
 }, {
   timestamps: true
 });

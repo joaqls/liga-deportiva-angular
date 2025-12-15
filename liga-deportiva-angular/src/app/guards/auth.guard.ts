@@ -1,22 +1,22 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router, ActivatedRouteSnapshot } from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
-  canActivate(route: ActivatedRouteSnapshot): boolean {
+  canActivate(): boolean {
 
-    // Rol simulado (vendrá del login)
-    const rol = localStorage.getItem('rol');
+    const usuario = this.authService.getUsuario();
 
-    // Rol requerido por la ruta
-    const rolRuta = route.data['rol'];
-
-    if (rol && rol === rolRuta) {
+    if (usuario) {
       return true;
     }
 

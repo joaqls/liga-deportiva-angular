@@ -3,6 +3,7 @@ const cors = require('cors');
 const conectarDB = require('./config/db');
 
 const authRoutes = require('./routes/auth.routes');
+const usuariosRoutes = require('./routes/usuarios.routes');
 const partidosRoutes = require('./routes/partidos.routes');
 
 const app = express();
@@ -14,8 +15,9 @@ conectarDB();
 app.use(cors());
 app.use(express.json());
 
-// Rutas
+// Rutas (CADA UNA UNA SOLA VEZ)
 app.use('/api', authRoutes);
+app.use('/api/usuarios', usuariosRoutes);
 app.use('/api/partidos', partidosRoutes);
 
 // Ruta de prueba
@@ -23,7 +25,7 @@ app.get('/', (req, res) => {
   res.send('API Liga Deportiva funcionando');
 });
 
-// Arrancar servidor (SIEMPRE AL FINAL)
+// Arrancar servidor
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Servidor backend corriendo en puerto ${PORT}`);

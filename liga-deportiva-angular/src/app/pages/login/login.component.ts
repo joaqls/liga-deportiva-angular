@@ -23,10 +23,26 @@ export class LoginComponent {
       return;
     }
 
+    this.authService.logout();
+
     this.authService.login(this.usuario, this.password).subscribe({
-      next: (res: { rol: string; token: string }) => {
-        this.authService.setSesion(res.rol, res.token);
-        this.router.navigate([`/${res.rol}`]);
+      next: (res: any) => {
+        this.authService.setUsuario(res);
+
+        switch (res.rol) {
+          case 'admin':
+            this.router.navigate(['/admin']);
+            break;
+          case 'usuario':
+            this.router.navigate(['/usuario']);
+            break;
+          case 'capitan':
+            this.router.navigate(['/capitan']);
+            break;
+          case 'arbitro':
+            this.router.navigate(['/arbitro']);
+            break;
+        }
       },
       error: () => {
         alert('Usuario o contraseña incorrectos');

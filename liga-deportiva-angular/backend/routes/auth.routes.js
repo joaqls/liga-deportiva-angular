@@ -17,10 +17,11 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ message: 'Credenciales incorrectas' });
     }
 
-    // Token simulado (luego será JWT)
+    // Devolvemos el usuario completo (SIN password en un proyecto real)
     res.json({
-      token: 'token-simulado',
-      rol: user.rol
+      usuario: user.usuario,
+      rol: user.rol,
+      equipo: user.equipo || null
     });
 
   } catch (error) {

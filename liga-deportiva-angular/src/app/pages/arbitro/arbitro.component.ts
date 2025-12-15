@@ -1,18 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PartidosService } from '../../services/partidos.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-arbitro',
   templateUrl: './arbitro.component.html'
 })
-export class ArbitroComponent {
+export class ArbitroComponent implements OnInit {
 
   partidos: any[] = [];
-  arbitro = 'arbitro1'; // simulación (login real se usaría después)
+  arbitro: string | null = null;   // 👈 ESTA LÍNEA ES LA CLAVE
 
-  constructor(private partidosService: PartidosService) {
-    this.partidosService
-      .obtenerPartidosPorArbitro(this.arbitro)
-      .subscribe(data => this.partidos = data);
+  constructor(
+    private partidosService: PartidosService,
+    private authService: AuthService
+  ) {}
+
+  ngOnInit(): void {
+    const usuario = this.authService.getUsuario();
+
+    if (usuario && usuario.usuario) {
+      this.arbitro = usuario.usuario;
+
+      this.partidosService
+        .obtenerPartidosPorArbitro(usuario.usuario)
+        .subscribe(data => this.partidos = data);
+    }
   }
 }

@@ -1,41 +1,42 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private rolSubject = new BehaviorSubject<string | null>(null);
-  rol$ = this.rolSubject.asObservable();
-
+  private usuarioActual: any = null;
   private apiUrl = 'http://localhost:3000/api';
 
   constructor(private http: HttpClient) {
-    const rol = localStorage.getItem('rol');
-    this.rolSubject.next(rol);
+    // 🔑 Recuperar sesión si existe
+    const usuarioGuardado = localStorage.getItem('usuario');
+    if (usuarioGuardado) {
+      this.usuarioActual = JSON.parse(usuarioGuardado);
+    }
   }
 
-  login(usuario: string, password: string) {
-    return this.http.post<{ token: string; rol: string }>(
-      `${this.apiUrl}/login`,
-      { usuario, password }
-    );
+  login(usuario: string, password: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/login`, { usuario, password });
   }
 
-  setSesion(rol: string, token: string) {
-    localStorage.setItem('rol', rol);
-    localStorage.setItem('token', token);
-    this.rolSubject.next(rol);
+  setUsuario(usuario: any) {
+    this.usuarioActual = usuario;
+    localStorage.setItem('usuario', JSON.stringify(usuario));
+  }
+
+  getUsuario() {
+    return this.usuarioActual;
+  }
+
+  isLogged(): boolean {
+    return this.usuarioActual !== null;
   }
 
   logout() {
-    localStorage.clear();
-    this.rolSubject.next(null);
-  }
-
-  getRol() {
-    return this.rolSubject.value;
+    this.usuarioActual = null;
+    localStorage.removeItem('usuario');
   }
 }
