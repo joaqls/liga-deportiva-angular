@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { UsuariosService } from '../../services/usuarios.service';
 
 @Component({
   selector: 'app-register',
@@ -13,10 +13,8 @@ export class RegisterComponent {
   rol = '';
   equipo = '';
 
-  private apiUrl = 'http://localhost:3000/api/usuarios';
-
   constructor(
-    private http: HttpClient,
+    private usuariosService: UsuariosService,
     private router: Router
   ) {}
 
@@ -42,9 +40,14 @@ export class RegisterComponent {
       nuevoUsuario.equipo = this.equipo;
     }
 
-    this.http.post(this.apiUrl, nuevoUsuario).subscribe(() => {
-      alert('Usuario registrado');
-      this.router.navigate(['/login']);
+    this.usuariosService.registrarUsuario(nuevoUsuario).subscribe({
+      next: () => {
+        alert('Usuario registrado correctamente');
+        this.router.navigate(['/login']);
+      },
+      error: () => {
+        alert('Error al registrar usuario');
+      }
     });
   }
 }
