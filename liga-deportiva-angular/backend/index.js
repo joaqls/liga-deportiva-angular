@@ -15,14 +15,19 @@ conectarDB();
 app.use(cors());
 app.use(express.json());
 
-// Rutas (CADA UNA UNA SOLA VEZ)
+// Rutas API
 app.use('/api', authRoutes);
 app.use('/api/usuarios', usuariosRoutes);
 app.use('/api/partidos', partidosRoutes);
 
-// Ruta de prueba
-app.get('/', (req, res) => {
+// Ruta de comprobación API
+app.get('/api', (req, res) => {
   res.send('API Liga Deportiva funcionando');
+});
+
+// Ruta raíz
+app.get('/', (req, res) => {
+  res.send('Servidor backend activo');
 });
 
 // Arrancar servidor
