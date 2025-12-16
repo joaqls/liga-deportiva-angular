@@ -5,7 +5,10 @@
     <h2 class="text-center mb-4">Preguntas Frecuentes</h2>
 
     <div class="mb-3">
-      <button class="btn btn-outline-primary w-100 text-start" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+      <button class="btn btn-outline-primary w-100 text-start"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#faq1">
         ¿Cómo me inscribo en una competición?
       </button>
       <div class="collapse" id="faq1">
@@ -16,7 +19,10 @@
     </div>
 
     <div class="mb-3">
-      <button class="btn btn-outline-primary w-100 text-start" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+      <button class="btn btn-outline-primary w-100 text-start"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#faq2">
         ¿Cuántos jugadores puede tener un equipo?
       </button>
       <div class="collapse" id="faq2">
@@ -31,28 +37,113 @@
   <section id="formulario">
     <h2 class="text-center mb-4">Formulario de Contacto</h2>
 
-    <form id="formContacto" class="mx-auto" style="max-width:600px;">
+    <form class="mx-auto"
+          style="max-width:600px;"
+          (ngSubmit)="enviarMensaje()"
+          #contactoForm="ngForm">
+
       <div class="mb-3">
-        <label for="nombre" class="form-label">Nombre</label>
-        <input type="text" class="form-control" id="nombre" required>
+        <label class="form-label">Nombre</label>
+        <input type="text"
+               class="form-control"
+               name="nombre"
+               [(ngModel)]="contacto.nombre"
+               required>
       </div>
+
       <div class="mb-3">
-        <label for="email" class="form-label">Correo electrónico</label>
-        <input type="email" class="form-control" id="email" required>
+        <label class="form-label">Correo electrónico</label>
+        <input type="email"
+               class="form-control"
+               name="email"
+               [(ngModel)]="contacto.email"
+               required>
       </div>
+
       <div class="mb-3">
-        <label for="mensaje" class="form-label">Mensaje</label>
-        <textarea class="form-control" id="mensaje" rows="4" required></textarea>
+        <label class="form-label">Mensaje</label>
+        <textarea class="form-control"
+                  rows="4"
+                  name="mensaje"
+                  [(ngModel)]="contacto.mensaje"
+                  required></textarea>
       </div>
-      <button type="submit" class="btn btn-success w-100" id="btnToast">Enviar</button>
+
+      <button type="submit"
+              class="btn btn-success w-100"
+              [disabled]="contactoForm.invalid">
+        Enviar
+      </button>
     </form>
   </section>
 
-  <!-- ================== BOTÓN DE INSCRIPCIÓN (MODAL) ================== -->
+  <!-- ================== BOTÓN INSCRIPCIÓN ================== -->
   <div class="text-center my-4">
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalInscripcion">
+    <button class="btn btn-primary" (click)="abrirModal()">
       Inscribirse
     </button>
   </div>
 
 </main>
+
+<!-- ================== MODAL INSCRIPCIÓN ================== -->
+<div class="modal fade"
+     tabindex="-1"
+     [class.show]="modalAbierto"
+     [style.display]="modalAbierto ? 'block' : 'none'">
+
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Formulario de Inscripción</h5>
+        <button type="button"
+                class="btn-close"
+                (click)="cerrarModal()"></button>
+      </div>
+
+      <div class="modal-body">
+        <form (ngSubmit)="inscribirse()" #f="ngForm">
+
+          <div class="mb-3">
+            <input class="form-control"
+                   placeholder="Nombre"
+                   name="nombre"
+                   [(ngModel)]="inscripcion.nombre"
+                   required>
+          </div>
+
+          <div class="mb-3">
+            <input class="form-control"
+                   placeholder="Correo electrónico"
+                   name="email"
+                   [(ngModel)]="inscripcion.email"
+                   required>
+          </div>
+
+          <div class="mb-3">
+            <select class="form-select"
+                    name="deporte"
+                    [(ngModel)]="inscripcion.deporte"
+                    required>
+              <option value="">Selecciona deporte</option>
+              <option value="futbol">Fútbol</option>
+              <option value="voleibol">Voleibol</option>
+              <option value="baloncesto">Baloncesto</option>
+            </select>
+          </div>
+
+          <button class="btn btn-primary w-100"
+                  [disabled]="f.invalid">
+            Inscribirse
+          </button>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- BACKDROP -->
+<div class="modal-backdrop fade show" *ngIf="modalAbierto"></div>
